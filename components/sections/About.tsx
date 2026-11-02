@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Code2, ServerCog, BrainCircuit, GraduationCap } from "lucide-react";
 import { profile } from "@/data/profile";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -33,14 +34,29 @@ export function About() {
           description={profile.summary}
         />
 
-        <div className="mt-6 inline-flex items-start gap-3 rounded-xl border border-border bg-card p-4">
-          <GraduationCap className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
-          <div>
-            <p className="font-medium text-foreground">
+        <div className="mt-8 grid gap-6 overflow-hidden rounded-2xl border border-border bg-card md:grid-cols-2">
+          <div className="relative min-h-[14rem] md:min-h-full">
+            <Image
+              src="/images/study-uptm.jpg"
+              alt="Studying Computer Science at Universiti Poly-Tech Malaysia (UPTM)"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="flex flex-col justify-center gap-3 p-6">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent">
+              <GraduationCap className="h-4 w-4" aria-hidden="true" />
+              Education
+            </span>
+            <p className="text-lg font-semibold text-foreground">
               {profile.education.credential}
             </p>
             <p className="text-sm text-muted-foreground">
-              {profile.education.institution} — {profile.education.focus}
+              {profile.education.institution}
+            </p>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Majoring in {profile.education.focus}.
             </p>
           </div>
         </div>

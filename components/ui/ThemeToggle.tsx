@@ -16,8 +16,15 @@ export function ThemeToggle({ className }: { className?: string }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Sync React state with the external DOM theme (applied pre-hydration by
+    // the inline script in layout.tsx) and with localStorage. This is a
+    // one-time mount sync with an external system — the intended use of an
+    // effect — not a reactive state cascade.
     const stored = window.localStorage.getItem("theme");
-    const isDark = stored ? stored === "dark" : document.documentElement.classList.contains("dark");
+    const isDark = stored
+      ? stored === "dark"
+      : document.documentElement.classList.contains("dark");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTheme(isDark ? "dark" : "light");
     setMounted(true);
   }, []);

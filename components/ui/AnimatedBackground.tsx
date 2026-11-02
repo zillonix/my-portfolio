@@ -26,6 +26,9 @@ export function AnimatedBackground() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // One-time mount flag so the orbs render only on the client (prevents any
+    // hydration mismatch). A single mount sync, not a reactive cascade.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
 
     const reduceMotion = window.matchMedia(
