@@ -66,6 +66,14 @@ export interface Certification {
   name: string;
   issuer: string;
   year?: string;
+  /** Optional longer description of what the training/credential covered. */
+  description?: string;
+  /** Optional focus areas / session breakdown (e.g. talk + workshop titles). */
+  focusAreas?: string[];
+  /** Optional image asset path under /public (e.g. "/images/foo.jpg"). */
+  image?: string;
+  /** Optional alt text for the image; required when `image` is set. */
+  imageAlt?: string;
 }
 
 export type CaseStudyField = "cybersecurity" | "ux";
