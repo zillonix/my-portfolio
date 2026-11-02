@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Spec Sync Checklist Validation",
+      "trigger": "PostFileCreate",
+      "description": "When a new component is added, prompts the agent to validate it against the tasks.md checklist and steering standards, and to sync the task status.",
+      "matcher": "components[\\\\/].*\\.tsx$",
+      "action": {
+        "type": "agent",
+        "prompt": "A new component file was just created. Validate it against the project plan before continuing:\n1. Open .kiro/specs/tasks.md and find the task that this component fulfills. If no task covers it, flag that the component is out of scope or that tasks.md needs updating.\n2. Confirm the component follows .kiro/steering/tech.md (strict TypeScript types, \"use client\" only when needed, no hardcoded data — read from data/, WCAG AA accessibility) and .kiro/steering/structure.md (correct directory, import order, @/* aliases).\n3. If the component completes a checklist item in tasks.md, mark that item done ([x]); if it partially completes one, note what remains.\nReport a short checklist of what passed and what needs follow-up."
+      }
+    }
+  ]
+}

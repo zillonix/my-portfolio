@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Lint and Typecheck on Save",
+      "trigger": "PostFileSave",
+      "description": "Runs ESLint and a TypeScript no-emit typecheck whenever a .ts or .tsx file is saved, enforcing the strict-TS and lint quality gates from tech.md.",
+      "matcher": "\\.tsx?$",
+      "action": {
+        "type": "command",
+        "command": "npm run lint && npx tsc --noEmit",
+        "timeout": 120
+      }
+    }
+  ]
+}
