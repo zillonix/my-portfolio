@@ -12,6 +12,8 @@ export function Badge({ children, className }: BadgeProps) {
     <span
       className={cn(
         "inline-flex items-center rounded-md border border-border bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground",
+        "transition-all duration-200 ease-out hover:border-accent/60 hover:text-foreground",
+        "motion-safe:hover:scale-105",
         className,
       )}
     >

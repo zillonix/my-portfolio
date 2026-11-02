@@ -18,7 +18,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub profile"
-            className="rounded-md text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="rounded-md text-muted-foreground transition-all duration-200 ease-out hover:text-accent motion-safe:hover:scale-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <Github className="h-5 w-5" aria-hidden="true" />
           </Link>
@@ -27,14 +27,14 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn profile"
-            className="rounded-md text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="rounded-md text-muted-foreground transition-all duration-200 ease-out hover:text-accent motion-safe:hover:scale-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <Linkedin className="h-5 w-5" aria-hidden="true" />
           </Link>
           <Link
             href={`mailto:${profile.email}`}
             aria-label="Send an email"
-            className="rounded-md text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="rounded-md text-muted-foreground transition-all duration-200 ease-out hover:text-accent motion-safe:hover:scale-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <Mail className="h-5 w-5" aria-hidden="true" />
           </Link>

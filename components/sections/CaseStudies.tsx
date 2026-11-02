@@ -36,7 +36,7 @@ export function CaseStudies() {
                 type="button"
                 onClick={() => setActiveId(study.id)}
                 aria-haspopup="dialog"
-                className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 text-left transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 text-left transition-all duration-300 ease-out hover:border-accent hover:shadow-lg hover:shadow-accent/10 motion-safe:hover:-translate-y-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent">
                   <Icon className="h-4 w-4" aria-hidden="true" />

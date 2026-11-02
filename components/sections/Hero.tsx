@@ -98,21 +98,22 @@ export function Hero() {
           {/* Glowing avatar frame */}
           <motion.div
             variants={avatar}
-            className="relative mx-auto w-full max-w-[18rem] lg:mx-0 lg:ml-auto"
+            className="group relative mx-auto w-full max-w-[18rem] lg:mx-0 lg:ml-auto"
           >
-            {/* Soft gradient glow behind the photo */}
+            {/* Soft gradient glow behind the photo — gently pulses, and
+                intensifies on hover. opacity-only animation keeps it cheap. */}
             <div
               aria-hidden="true"
-              className="absolute -inset-4 rounded-full bg-gradient-to-tr from-cyan-400/40 via-indigo-400/30 to-emerald-400/40 opacity-70 blur-2xl dark:from-cyan-500/40 dark:via-indigo-500/30 dark:to-emerald-500/40"
+              className="absolute -inset-4 rounded-full bg-gradient-to-tr from-cyan-400/40 via-indigo-400/30 to-emerald-400/40 opacity-70 blur-2xl transition-opacity duration-500 ease-out group-hover:opacity-100 motion-safe:animate-pulse dark:from-cyan-500/40 dark:via-indigo-500/30 dark:to-emerald-500/40"
             />
-            <div className="relative aspect-square overflow-hidden rounded-full border-2 border-border/70 bg-card shadow-2xl ring-1 ring-accent/20">
+            <div className="relative aspect-square overflow-hidden rounded-full border-2 border-border/70 bg-card shadow-2xl ring-1 ring-accent/20 transition-all duration-500 ease-out group-hover:ring-2 group-hover:ring-accent/50">
               <Image
                 src="/images/profile.jpg"
                 alt={`Portrait of ${profile.name}`}
                 fill
                 priority
                 sizes="(min-width: 640px) 18rem, 70vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-105"
               />
             </div>
           </motion.div>

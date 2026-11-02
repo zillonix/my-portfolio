@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { motion, useReducedMotion, type HTMLMotionProps } from "framer-motion";
+import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type Variant = "primary" | "secondary" | "ghost";
@@ -28,38 +31,49 @@ interface BaseProps {
   className?: string;
 }
 
+const MotionLink = motion.create(Link);
+
+// Use Framer Motion's prop types so motion's redefined DOM handlers
+// (onDrag, onAnimationStart, ...) stay compatible when spread.
 type ButtonAsButton = BaseProps &
-  Omit<ComponentPropsWithoutRef<"button">, keyof BaseProps> & {
-    href?: undefined;
-  };
+  Omit<HTMLMotionProps<"button">, keyof BaseProps> & { href?: undefined };
 
 type ButtonAsLink = BaseProps &
-  Omit<ComponentPropsWithoutRef<typeof Link>, keyof BaseProps> & {
-    href: string;
-  };
+  Omit<ComponentProps<typeof MotionLink>, keyof BaseProps> & { href: string };
 
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 /**
  * Styled button primitive. Renders an anchor (via next/link) when `href`
- * is provided, otherwise a native button. Content-agnostic.
+ * is provided, otherwise a native button. Adds a subtle spring scale on
+ * hover/tap (transform-only, GPU-friendly), disabled under reduced motion.
  */
 export function Button(props: ButtonProps) {
   const { variant = "primary", size = "md", className, children, ...rest } = props;
+  const reduceMotion = useReducedMotion();
   const classes = cn(baseClasses, variantClasses[variant], sizeClasses[size], className);
+
+  // Spring micro-interaction; a no-op object when the user prefers reduced motion.
+  const motionProps = reduceMotion
+    ? {}
+    : {
+        whileHover: { scale: 1.04 },
+        whileTap: { scale: 0.97 },
+        transition: { type: "spring" as const, stiffness: 400, damping: 17 },
+      };
 
   if (rest.href !== undefined) {
     const { href, ...linkRest } = rest;
     return (
-      <Link href={href} className={classes} {...linkRest}>
+      <MotionLink href={href} className={classes} {...motionProps} {...linkRest}>
         {children}
-      </Link>
+      </MotionLink>
     );
   }
 
   return (
-    <button className={classes} {...rest}>
+    <motion.button className={classes} {...motionProps} {...rest}>
       {children}
-    </button>
+    </motion.button>
   );
 }

@@ -34,14 +34,14 @@ export function About() {
           description={profile.summary}
         />
 
-        <div className="mt-8 grid gap-6 overflow-hidden rounded-2xl border border-border bg-card md:grid-cols-2">
-          <div className="relative min-h-[14rem] md:min-h-full">
+        <div className="group mt-8 grid gap-6 overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 ease-out hover:border-accent hover:shadow-lg hover:shadow-accent/10 md:grid-cols-2">
+          <div className="relative min-h-[14rem] overflow-hidden md:min-h-full">
             <Image
               src="/images/study-uptm.jpg"
               alt="Studying Computer Science at Universiti Poly-Tech Malaysia (UPTM)"
               fill
               sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
+              className="object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-105"
             />
           </div>
           <div className="flex flex-col justify-center gap-3 p-6">
