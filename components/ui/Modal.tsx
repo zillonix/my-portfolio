@@ -31,7 +31,18 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
     previouslyFocused.current = document.activeElement as HTMLElement | null;
     const { body } = document;
     const prevOverflow = body.style.overflow;
+    const prevPaddingRight = body.style.paddingRight;
+
+    // Locking body scroll removes the viewport scrollbar. On platforms where
+    // the scrollbar occupies layout width (Windows), that widens the page and
+    // shifts every fixed/sticky element — the "flash" seen on open/close.
+    // Compensate by padding the body by exactly the scrollbar width so the
+    // layout stays perfectly still.
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      body.style.paddingRight = `${scrollbarWidth}px`;
+    }
 
     // Move focus into the dialog.
     const panel = panelRef.current;
@@ -65,6 +76,7 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       body.style.overflow = prevOverflow;
+      body.style.paddingRight = prevPaddingRight;
       previouslyFocused.current?.focus();
     };
   }, [open, onClose]);
@@ -76,7 +88,7 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
       {open ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
           <motion.div
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 transform-gpu bg-black/60 backdrop-blur-sm"
             onClick={onClose}
             initial={reduceMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -89,7 +101,7 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
             aria-modal="true"
             aria-labelledby={titleId}
             className={cn(
-              "relative z-10 max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-border bg-card p-6 shadow-2xl sm:p-8",
+              "relative z-10 max-h-[85vh] w-full max-w-2xl transform-gpu overflow-y-auto rounded-2xl border border-border bg-card p-6 shadow-2xl sm:p-8",
               className,
             )}
             initial={reduceMotion ? false : { opacity: 0, scale: 0.96, y: 8 }}

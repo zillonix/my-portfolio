@@ -27,7 +27,7 @@ export function ProjectCard({ project, onOpen }: ProjectCardProps) {
       onClick={() => onOpen(project.id)}
       aria-haspopup="dialog"
       className={cn(
-        "group flex h-full flex-col rounded-2xl border border-border bg-card p-6 text-left",
+        "group flex h-full transform-gpu flex-col rounded-2xl border border-border bg-card p-6 text-left",
         "transition-all duration-300 ease-out",
         "hover:border-accent hover:shadow-lg hover:shadow-accent/10",
         "motion-safe:hover:-translate-y-1.5",
