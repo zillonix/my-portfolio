@@ -10,6 +10,8 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
+  preload: true,
+  fallback: ["system-ui", "arial"],
 });
 
 export const metadata: Metadata = {
@@ -35,8 +37,12 @@ export const metadata: Metadata = {
   },
 };
 
-// Applied before React hydrates to prevent a flash of the wrong theme.
-const themeInitScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':true;document.documentElement.classList.toggle('dark',d);}catch(e){document.documentElement.classList.add('dark');}})();`;
+// Applied synchronously in <head> before React hydrates, preventing any flash
+// of the wrong theme (FOUC). Resolution order: stored choice → OS preference →
+// dark default. An explicit OS *light* preference only wins when nothing is
+// stored; otherwise dark is the default. `color-scheme` is set so native UI
+// (scrollbars, form controls) matches immediately too.
+const themeInitScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':!window.matchMedia('(prefers-color-scheme: light)').matches;var r=document.documentElement;r.classList.toggle('dark',d);r.style.colorScheme=d?'dark':'light';}catch(e){document.documentElement.classList.add('dark');}})();`;
 
 export default function RootLayout({
   children,

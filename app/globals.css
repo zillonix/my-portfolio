@@ -4,7 +4,9 @@
 
 @layer base {
   :root {
-    /* Light theme tokens (HSL channels, space-separated) */
+    /* Light theme tokens (HSL channels, space-separated). These apply only
+       when the `dark` class is absent from <html>. The inline theme script
+       adds `dark` by default, so the dark block below is the default paint. */
     --background: 0 0% 100%;
     --foreground: 222 47% 11%;
     --muted: 210 40% 96%;
@@ -17,6 +19,7 @@
 
   .dark {
     /* Dark theme tokens — default experience */
+    color-scheme: dark;
     --background: 222 47% 7%;
     --foreground: 210 40% 96%;
     --muted: 217 33% 14%;
@@ -27,15 +30,19 @@
     --accent-foreground: 222 47% 7%;
   }
 
+  /* Light mode is opt-in: only when the `dark` class is absent *and* a light
+     preference was explicitly resolved by the theme script. The script adds
+     `dark` by default, so :root above stays dark-first. */
+  html:not(.dark) {
+    color-scheme: light;
+  }
+
   * {
     @apply border-border;
   }
 
   html {
     scroll-behavior: smooth;
-  }
-
-  html {
     @apply bg-background;
   }
 
