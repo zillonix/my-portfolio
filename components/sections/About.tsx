@@ -52,10 +52,10 @@ export function About() {
             <p className="text-lg font-semibold text-foreground">
               {profile.education.credential}
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-slate-700 dark:text-slate-300">
               {profile.education.institution}
             </p>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
               Majoring in {profile.education.focus}.
             </p>
           </div>
@@ -71,7 +71,7 @@ export function About() {
               <h3 className="mt-4 text-lg font-semibold text-foreground">
                 {pillar.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                 {pillar.description}
               </p>
             </div>

@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
-import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import { OceanWavesBackground } from "@/components/OceanWavesBackground";
 import { profile } from "@/data/profile";
 
 const inter = Inter({
@@ -14,25 +14,35 @@ const inter = Inter({
   fallback: ["system-ui", "arial"],
 });
 
+const SITE_URL = "https://zulhusni.org";
+const SITE_TITLE = "Zulhusni Irfan | Software Developer";
+const SITE_DESCRIPTION =
+  "Portfolio of Zulhusni Irfan - Full-Stack Web Developer specializing in web applications, IT infrastructure, and AI solutions.";
+
 export const metadata: Metadata = {
-  title: `${profile.name} — Full-Stack Developer`,
-  description:
-    "Portfolio of Muhammad Zulhusni Irfan Bin Md Zulkfili: full-stack web development with Laravel and modern TypeScript, IT systems and networking, and AI logic programming.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   keywords: [
-    "Full-Stack Developer",
-    "Laravel",
-    "Next.js",
-    "TypeScript",
-    "IT Support",
-    "Networking",
-    "Prolog",
+    "portfolio",
+    "web developer",
+    "software engineer",
+    "full-stack developer",
     "Malaysia",
+    "Next.js",
+    "Laravel",
+    "TypeScript",
+    "Zulhusni Irfan",
   ],
   authors: [{ name: profile.name }],
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
-    title: `${profile.name} — Full-Stack Developer`,
-    description:
-      "Full-stack web development, IT systems, and AI logic — projects, experience, and case studies.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_TITLE,
     type: "website",
   },
 };
@@ -53,7 +63,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className={`${inter.variable} font-sans`}>
-        <AnimatedBackground />
+        <OceanWavesBackground />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-foreground"

@@ -46,7 +46,7 @@ export function Hero() {
           <div className="max-w-3xl">
             <motion.p
               variants={item}
-              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground"
+              className="inline-flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300"
             >
               <MapPin className="h-4 w-4 text-accent" aria-hidden="true" />
               {profile.location}
@@ -61,7 +61,7 @@ export function Hero() {
 
             <motion.p
               variants={item}
-              className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+              className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300"
             >
               {profile.headline}
             </motion.p>
@@ -70,24 +70,31 @@ export function Hero() {
               <Button href="#projects" variant="primary">
                 View Projects
               </Button>
-              <Button href={profile.cvPath} variant="secondary" download>
+              <Button
+                href={profile.cvPath}
+                variant="secondary"
+                download
+                className="border-slate-300 bg-white/80 text-slate-800 hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+              >
                 <Download className="h-4 w-4" aria-hidden="true" />
                 Download CV
               </Button>
               <Button
                 href={profile.github}
-                variant="ghost"
+                variant="secondary"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="border-slate-300 bg-white/80 text-slate-800 hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
               >
                 <Github className="h-4 w-4" aria-hidden="true" />
                 GitHub
               </Button>
               <Button
                 href={profile.linkedin}
-                variant="ghost"
+                variant="secondary"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="border-slate-300 bg-white/80 text-slate-800 hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
               >
                 <Linkedin className="h-4 w-4" aria-hidden="true" />
                 LinkedIn
@@ -122,7 +129,7 @@ export function Hero() {
         <a
           href="#about"
           aria-label="Scroll to About"
-          className="mt-16 inline-flex items-center gap-2 rounded-md text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="mt-16 inline-flex items-center gap-2 rounded-md text-sm text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           <ArrowDown className="h-4 w-4 animate-bounce" aria-hidden="true" />
           Learn more
